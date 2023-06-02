@@ -8,6 +8,12 @@ jobs:
     resource_class: medium+
     steps:
       - checkout
+      - restore_cache:
+          name: restore image cache
+          keys:
+            - md-confluence-{{ checksum }}
+            - md-confluence-
+            - md-
       - run:
           name: Download and install Mark utility
           command: |
@@ -16,6 +22,10 @@ jobs:
       - run:
           name: Convert md file(s) and send to Confluence
           command: mark -f ./*.md -u $MARK_USERNAME -p $MARK_PASSWORD -b "https://makeitdrzzle.atlassian.net/wiki/"
+      - save_cache:
+          key: md-confluence-{{ checksum }}
+          paths:
+            - md-confluence-test/cache-directory
 
 # Orchestrate our job run sequence
 workflows:
