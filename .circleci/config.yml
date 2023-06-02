@@ -21,6 +21,6 @@ jobs:
 workflows:
   md_convert:
     jobs:
-      - build
+      - build:
           context:
             - md-confluence-test
