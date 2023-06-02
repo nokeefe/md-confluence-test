@@ -5,7 +5,8 @@
 
 This md file is a test to export to confluence
 
-[hyperlink test](www.google.com)
+<a href="www.google.com">hyperlink test</a>
+trying html hyperlink syntax
 
 ## Title test
 
