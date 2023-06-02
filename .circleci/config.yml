@@ -1,0 +1,24 @@
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: cimg/go:1.20.4
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Download and install Mark utility
+          command: |
+            go install github.com/kovetskiy/mark@latest
+            echo `mark --version`
+      - run:
+          name: Convert md file(s) and send to Confluence
+          command: mark -f ./*.md -b "https://makeitdrzzle.atlassian.net/wiki/"
+
+# Orchestrate our job run sequence
+workflows:
+  md_convert:
+    jobs:
+      - build
