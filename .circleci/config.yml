@@ -15,10 +15,12 @@ jobs:
             echo `mark --version`
       - run:
           name: Convert md file(s) and send to Confluence
-          command: mark -f ./*.md -b "https://makeitdrzzle.atlassian.net/wiki/"
+          command: mark -f ./*.md -u $MARK_USERNAME -p $MARK_PASSWORD -b "https://makeitdrzzle.atlassian.net/wiki/"
 
 # Orchestrate our job run sequence
 workflows:
   md_convert:
     jobs:
       - build
+          context:
+            - md-confluence-test
