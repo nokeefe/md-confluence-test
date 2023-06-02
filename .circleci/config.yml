@@ -11,7 +11,7 @@ jobs:
       - restore_cache:
           name: restore image cache
           keys:
-            - md-confluence-{{ checksum }}
+            - md-confluence-{{ .Branch }}
             - md-confluence-
             - md-
       - run:
@@ -23,7 +23,7 @@ jobs:
           name: Convert md file(s) and send to Confluence
           command: mark -f ./*.md -u $MARK_USERNAME -p $MARK_PASSWORD -b "https://makeitdrzzle.atlassian.net/wiki/"
       - save_cache:
-          key: md-confluence-{{ checksum }}
+          key: md-confluence-{{ .Branch }}
           paths:
             - md-confluence-test/cache-directory
 
