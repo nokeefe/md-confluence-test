@@ -5,8 +5,8 @@
 
 This md file is a test to export to confluence
 
-<a href="www.google.com">hyperlink test</a>
-trying html hyperlink syntax
+[google hyperlink] (https://www.google.com/)
+Trying with a space between the text and link ^
 
 ## Title test
 
